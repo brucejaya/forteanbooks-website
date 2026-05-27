@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sell to us — Fortean Books</title>
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/sell.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__row">
+    <span class="site-header__left">Forteana &amp; the unexplained · UK</span>
+    <a href="index.html" class="wordmark">Fortean<span class="wordmark__dot"></span>Books</a>
+    <div class="site-header__right">
+      <a href="books.html">Catalogue</a>
+      <a href="#" class="snipcart-checkout">
+        <span class="cart-pill">Cart · <span class="snipcart-items-count">0</span></span>
+      </a>
+    </div>
+  </div>
+  <nav class="subnav" aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="books.html">Catalogue</a>
+    <a href="about.html">About</a>
+    <a href="sell.html" class="is-current">Sell to us</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="page-hero__grid">
+        <div>
+          <p class="eyebrow">§ Got books to sell?</p>
+          <h1>Selling a<br><em>collection?</em></h1>
+        </div>
+        <div>
+          <p class="lead"><em>I'm always looking to buy. Single titles, a shelf, or a whole collection — if it overlaps with what I sell, I'd like to hear about it.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I'm after -->
+  <section class="section">
+    <div class="wrap">
+      <div class="about-grid about-grid--flush">
+        <div>
+          <p class="eyebrow">§ 01 — What I'm after</p>
+          <h2>The same things<br><em>I sell.</em></h2>
+          <p class="muted">If you'd see it on the catalogue page here, I'd probably like to buy it.</p>
+        </div>
+        <div>
+          <p>The short list: twentieth-century books on UFOs, the paranormal, parapsychology, cryptozoology, ghost-and-haunting literature, ley lines and earth mysteries, Western esoterica, and Forteana generally. Mass-market paperbacks, hardbacks, magazines, the occasional pamphlet.</p>
+          <p>Condition matters but doesn't need to be pristine — I sell honest reading copies, so I happily buy honest reading copies. I do tend to pass on books that are heavily damaged, water-stained, missing pages, or with broken bindings.</p>
+          <p>If you're not sure whether what you have is in scope, just send a rough list. I'll tell you honestly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="thin">
+
+  <!-- How it works -->
+  <section class="section">
+    <div class="wrap">
+      <header class="section-head">
+        <div class="num">§ 02 — How it works</div>
+        <h2>Pretty simple.</h2>
+      </header>
+
+      <ol class="process-steps">
+        <li class="process-step">
+          <span class="process-step__num" aria-hidden="true">01</span>
+          <h3>Tell me<br>what you have.</h3>
+          <p>Use the form below. A rough list is fine to start — a dozen titles or a hundred, whichever you have to hand. Photographs of the shelf are useful but not required.</p>
+        </li>
+        <li class="process-step">
+          <span class="process-step__num" aria-hidden="true">02</span>
+          <h3>I'll get<br>back to you.</h3>
+          <p>Usually within a few days. Either with an offer, or with questions, or — if it's not for me — an honest "this isn't really my patch, here's who I'd try instead."</p>
+        </li>
+        <li class="process-step">
+          <span class="process-step__num" aria-hidden="true">03</span>
+          <h3>If we agree,<br>I'll pay.</h3>
+          <p>Bank transfer on receipt. I'll cover postage to me for anything I've committed to buy. Larger collections we can work out — sometimes I can come and collect.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- The form -->
+  <section class="section section--warm">
+    <div class="wrap--narrow">
+      <p class="eyebrow sell-form__heading">§ 03 — Tell me about it</p>
+      <h2 class="sell-form__heading">Send a note.</h2>
+      <p class="form-lead">All of this comes straight to my inbox. No bots, no auto-reply.</p>
+
+      <form name="sell-submission" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="sell-submission">
+        <p class="honeypot"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label for="location">Where are the books?</label>
+            <input type="text" id="location" name="location" placeholder="Town &amp; country" required>
+          </div>
+          <div class="form-row">
+            <label for="size">Roughly how many?</label>
+            <select id="size" name="size">
+              <option>Just one or two titles</option>
+              <option>A shelf — under 30</option>
+              <option>A bookcase — 30 to 150</option>
+              <option>A bigger collection</option>
+              <option>An entire library</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="description">A rough description</label>
+          <textarea id="description" name="description" placeholder="Subjects, period, anything that stands out. Don't worry about being exhaustive — just give me a feel for what's there." required></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="highlights">Any standout titles? (optional)</label>
+          <textarea id="highlights" name="highlights" placeholder="Author, title, year if you have it. Even three or four examples really helps."></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="photos">Photographs (optional)</label>
+          <input type="file" id="photos" name="photos" multiple accept="image/*">
+          <p class="form-note">Snaps of the shelf are perfectly fine. JPG or PNG, up to 10mb each.</p>
+        </div>
+
+        <hr class="thin">
+
+        <div class="form-actions">
+          <p class="form-actions__note">Your details stay with me.</p>
+          <button type="submit" class="btn">Send →</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="wrap">
+      <div class="newsletter__grid">
+        <div>
+          <p class="eyebrow eyebrow--on-dark">Mailing list</p>
+          <h2>Stay in touch.</h2>
+          <p>If you're not selling now but might be later, the newsletter is the easiest way to keep my address handy.</p>
+        </div>
+        <div>
+          <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="newsletter">
+            <p class="honeypot"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <input type="email" name="email" placeholder="your@email" required>
+            <button type="submit">Subscribe →</button>
+          </form>
+          <p class="newsletter__small">Sent when there's something worth sending.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div>
+        <a href="index.html" class="wordmark">Fortean<span class="wordmark__dot"></span>Books</a>
+        <address class="site-footer__address">
+          A small online bookshop<br>
+          for books on the unexplained.<br>
+          Based in the United Kingdom.<br>
+          Ships worldwide.
+        </address>
+      </div>
+      <nav aria-label="Browse">
+        <h4>Browse</h4>
+        <ul>
+          <li><a href="books.html">Everything in stock</a></li>
+          <li><a href="#">Recently added</a></li>
+          <li><a href="#">Under £20</a></li>
+          <li><a href="#">Scarcer copies</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="About">
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">Why this exists</a></li>
+          <li><a href="sell.html">Selling to me</a></li>
+          <li><a href="contact.html">Get in touch</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Customer">
+        <h4>Customer</h4>
+        <ul>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="site-footer__bottom">
+      <span>© Fortean Books · A one-person operation</span>
+      <span>Set in Cormorant &amp; Crimson Pro</span>
+    </div>
+  </div>
+</footer>
+
+<div id="snipcart" data-config-modal-style="side" data-api-key="YOUR_PUBLIC_API_KEY_HERE" hidden></div>
+<!-- <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script> -->
+
+</body>
+</html>

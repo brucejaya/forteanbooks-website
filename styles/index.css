@@ -1,0 +1,92 @@
+/* =========================================================
+   index.css — homepage-specific styles
+   ========================================================= */
+
+/* ------------- Hero — shader dark version ------------- */
+
+.hero-centered {
+  /* WebGL canvas fallback colour — matches shader's deep indigo base */
+  background: #080815;
+  /* No bottom border — the darkness creates the separation naturally */
+  border-bottom-color: transparent;
+  overflow: hidden;
+}
+
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* GPU layer hint — smoother compositing */
+  transform: translateZ(0);
+}
+
+/* Ensure text sits above the canvas */
+.hero-centered .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* Flip all text to light */
+.hero-centered__eyebrow {
+  color: rgba(255, 255, 255, 0.40);
+}
+
+.hero-centered__title {
+  color: #fff;
+}
+
+/* Mauve accent matches the shader highlight colour */
+.hero-centered__title .accent {
+  color: #b87fcc;
+}
+
+.hero-centered__epigraph {
+  color: rgba(255, 255, 255, 0.60);
+}
+
+/* Decorative rule */
+.hero-centered__rule {
+  background: rgba(255, 255, 255, 0.18);
+}
+.hero-centered__rule::before,
+.hero-centered__rule::after {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Ghost button on dark background */
+.hero-centered .btn--ghost {
+  color: rgba(255, 255, 255, 0.80);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.hero-centered .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.55);
+  color: #fff;
+}
+
+.hero-centered__actions { margin-top: 28px; }
+
+/* ------------- Featured section ------------- */
+
+.featured__heading {
+  margin-bottom: 48px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.feature-grid__footer {
+  text-align: center;
+  margin-top: 72px;
+}
+
+/* ------------- Subjects section ------------- */
+
+.subjects-section { padding-top: 0; }
+
+.subjects__heading {
+  margin-bottom: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule);
+}

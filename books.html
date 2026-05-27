@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Catalogue — Fortean Books</title>
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/books.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__row">
+    <span class="site-header__left">Forteana &amp; the unexplained · UK</span>
+    <a href="index.html" class="wordmark">Fortean<span class="wordmark__dot"></span>Books</a>
+    <div class="site-header__right">
+      <a href="books.html">Catalogue</a>
+      <a href="#" class="snipcart-checkout">
+        <span class="cart-pill">Cart · <span class="snipcart-items-count">0</span></span>
+      </a>
+    </div>
+  </div>
+  <nav class="subnav" aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="books.html" class="is-current">Catalogue</a>
+    <a href="about.html">About</a>
+    <a href="sell.html">Sell to us</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">§ Everything currently in stock</p>
+      <h1>The whole<br><em>shelf.</em></h1>
+      <p>Most are used paperbacks in honest condition. A few hardbacks. The odd scarcer copy. Anything still listed is still here.</p>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="section filterbar-section" aria-label="Filter catalogue">
+    <div class="wrap">
+      <div class="filterbar">
+        <span class="label">Subject</span>
+        <button class="chip is-active" data-filter="subject" data-value="">All</button>
+        <button class="chip" data-filter="subject" data-value="UFO">UFOs</button>
+        <button class="chip" data-filter="subject" data-value="Fortean">Forteana</button>
+        <button class="chip" data-filter="subject" data-value="Parapsychology">Parapsychology</button>
+        <button class="chip" data-filter="subject" data-value="Ancient">Ancient Mysteries</button>
+      </div>
+      <div class="filterbar">
+        <span class="label">Price</span>
+        <button class="chip is-active" data-filter="price" data-value="">All</button>
+        <button class="chip" data-filter="price" data-value="under15">Under £15</button>
+        <button class="chip" data-filter="price" data-value="15to30">£15 – £30</button>
+        <button class="chip" data-filter="price" data-value="over30">£30+</button>
+        <div class="filterbar__spacer"></div>
+        <div class="view-toggle">
+          <button class="view-btn" data-view="list" aria-label="List view">≡ List</button>
+          <button class="view-btn is-active" data-view="tiles" aria-label="Tile view">⊞ Tiles</button>
+        </div>
+      </div>
+      <div class="filterbar filterbar--search">
+        <input type="search" id="catalogue-search" placeholder="Search titles, authors…" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalogue -->
+  <section class="section catalogue-section">
+    <div class="wrap">
+
+      <div class="catalogue__header" aria-hidden="true" style="display:none">
+        <span class="eyebrow">№</span>
+        <span class="eyebrow">Cover</span>
+        <span class="eyebrow">Title</span>
+        <span class="eyebrow">Author</span>
+        <span class="eyebrow">Edition</span>
+        <span class="eyebrow">Year</span>
+        <span class="eyebrow">Cond.</span>
+        <span class="eyebrow">Price</span>
+      </div>
+
+      <ol class="catalogue catalogue--tiles" id="catalogue-list">
+      </ol>
+
+      <div class="catalogue__footer">
+        <p class="mono muted" id="catalogue-count"></p>
+        <a href="contact.html" class="btn btn--ghost">Looking for something specific? →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="wrap">
+      <div class="newsletter__grid">
+        <div>
+          <p class="eyebrow eyebrow--on-dark">Mailing list</p>
+          <h2>When new things<br>turn up.</h2>
+          <p>An email every few weeks when interesting books arrive.</p>
+        </div>
+        <div>
+          <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="newsletter">
+            <p class="honeypot"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <input type="email" name="email" placeholder="your@email" required>
+            <button type="submit">Subscribe →</button>
+          </form>
+          <p class="newsletter__small">Sent when there's something worth sending.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div>
+        <a href="index.html" class="wordmark">Fortean<span class="wordmark__dot"></span>Books</a>
+        <address class="site-footer__address">
+          A small online bookshop<br>
+          for books on the unexplained.<br>
+          Based in the United Kingdom.<br>
+          Ships worldwide.
+        </address>
+      </div>
+      <nav aria-label="Browse">
+        <h4>Browse</h4>
+        <ul>
+          <li><a href="books.html">Everything in stock</a></li>
+          <li><a href="books.html">Recently added</a></li>
+          <li><a href="books.html">Under £20</a></li>
+          <li><a href="books.html">Scarcer copies</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="About">
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">Why this exists</a></li>
+          <li><a href="sell.html">Selling to me</a></li>
+          <li><a href="contact.html">Get in touch</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Customer">
+        <h4>Customer</h4>
+        <ul>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="site-footer__bottom">
+      <span>© Fortean Books · A one-person operation</span>
+      <span>Set in Cormorant &amp; Crimson Pro</span>
+    </div>
+  </div>
+</footer>
+
+<div id="snipcart" data-config-modal-style="side" data-api-key="YOUR_PUBLIC_API_KEY_HERE" hidden></div>
+<!-- <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script> -->
+
+<script>
+(function () {
+  var allBooks    = [];
+  var activeSubj  = '';
+  var activePrice = '';
+  var searchQuery = '';
+
+  var list    = document.getElementById('catalogue-list');
+  var header  = document.querySelector('.catalogue__header');
+  var counter = document.getElementById('catalogue-count');
+
+  // ── Cover HTML ──────────────────────────────────────────────────────────────
+  function coverHtml(b) {
+    if (b.num_images > 0) {
+      return '<div class="cat-row__cover-mini" aria-hidden="true">' +
+        '<img src="images/' + b.copy_id + '/cover.jpg" alt="" class="cat-row__cover-img" loading="lazy">' +
+        '</div>';
+    }
+    return '<div class="cat-row__cover-mini ' + b.color + '" aria-hidden="true"></div>';
+  }
+
+  // ── Render ──────────────────────────────────────────────────────────────────
+  function render(items) {
+    var html = items.map(function (b, i) {
+      var sold = b.status === 'sold';
+      var rowCls  = 'cat-row' + (sold ? ' cat-row--sold' : '');
+      var pillCls = 'pill' + (sold ? ' pill--sold' : '');
+      var condTxt = sold ? 'Sold' : (b.condition || 'Good');
+      var copyLbl = b.copy > 1 ? ' <span class="copy-label">copy ' + b.copy + '</span>' : '';
+      var num     = String(i + 1).padStart(3, '0');
+      var price   = '£' + b.price.toFixed(2);
+      var year    = b.year || '—';
+
+      return '<li>' +
+        '<a class="' + rowCls + '" href="books/' + b.copy_id + '.html">' +
+        '<span class="cat-row__num">' + num + '</span>' +
+        coverHtml(b) +
+        '<div><span class="cat-row__title">' + b.title + '</span>' + copyLbl + '</div>' +
+        '<span class="cat-row__author">' + b.author + '</span>' +
+        '<span class="cat-row__edition">' + b.edition + '</span>' +
+        '<span class="cat-row__year">' + year + '</span>' +
+        '<div class="cat-row__cond"><span class="' + pillCls + '">' + condTxt + '</span></div>' +
+        '<span class="cat-row__price">' + price + '</span>' +
+        '</a></li>';
+    }).join('');
+    list.innerHTML = html;
+    var inStock = items.filter(function (b) { return b.status !== 'sold'; }).length;
+    counter.textContent = items.length === allBooks.length
+      ? "That’s everything currently in stock."
+      : items.length + ' results (' + inStock + ' available)';
+  }
+
+  // ── Filter ──────────────────────────────────────────────────────────────────
+  function applyFilters() {
+    var items = allBooks.filter(function (b) {
+      if (activeSubj && b.subject.toLowerCase().indexOf(activeSubj.toLowerCase()) === -1) return false;
+      if (activePrice === 'under15'  && b.price >= 15)  return false;
+      if (activePrice === '15to30'   && (b.price < 15 || b.price > 30)) return false;
+      if (activePrice === 'over30'   && b.price <= 30)  return false;
+      if (searchQuery) {
+        var hay = (b.title + ' ' + b.author + ' ' + b.subject + ' ' + b.edition).toLowerCase();
+        if (hay.indexOf(searchQuery) === -1) return false;
+      }
+      return true;
+    });
+    render(items);
+  }
+
+  // ── Fetch ────────────────────────────────────────────────────────────────────
+  fetch('catalogue.json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      allBooks = data;
+      applyFilters();
+    })
+    .catch(function () {
+      list.innerHTML = '<li class="catalogue__error">Unable to load catalogue.</li>';
+    });
+
+  // ── Subject chips ────────────────────────────────────────────────────────────
+  document.querySelectorAll('[data-filter="subject"]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-filter="subject"]').forEach(function (b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      activeSubj = btn.dataset.value;
+      applyFilters();
+    });
+  });
+
+  // ── Price chips ──────────────────────────────────────────────────────────────
+  document.querySelectorAll('[data-filter="price"]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-filter="price"]').forEach(function (b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      activePrice = btn.dataset.value;
+      applyFilters();
+    });
+  });
+
+  // ── Search ───────────────────────────────────────────────────────────────────
+  document.getElementById('catalogue-search').addEventListener('input', function () {
+    searchQuery = this.value.trim().toLowerCase();
+    applyFilters();
+  });
+
+  // ── View toggle ───────────────────────────────────────────────────────────────
+  document.querySelectorAll('.view-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.view-btn').forEach(function (b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      if (btn.dataset.view === 'tiles') {
+        list.classList.add('catalogue--tiles');
+        if (header) header.style.display = 'none';
+      } else {
+        list.classList.remove('catalogue--tiles');
+        if (header) header.style.display = '';
+      }
+    });
+  });
+
+}());
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+/* =========================================================
+   sell.css — sell page-specific styles
+   ========================================================= */
+
+/* ------------- What I'm after ------------- */
+
+.about-grid--flush { padding: 0; }
+
+/* ------------- Process steps ------------- */
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.process-step__num {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 48px;
+  color: var(--oxblood);
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 18px;
+}
+
+.process-step h3 { font-size: 24px; }
+
+.process-step p {
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+
+/* ------------- Sell form section ------------- */
+
+.sell-form__heading { margin-bottom: 12px; }
+
+@media (max-width: 980px) {
+  .process-steps { grid-template-columns: 1fr; gap: 36px; }
+}

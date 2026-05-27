@@ -1,0 +1,80 @@
+/* =========================================================
+   books.css — catalogue page-specific styles
+   ========================================================= */
+
+/* ------------- Filter bar section ------------- */
+
+.filterbar-section {
+  padding-top: 36px;
+  padding-bottom: 0;
+}
+
+/* ------------- Catalogue section ------------- */
+
+.catalogue-section { padding-top: 48px; }
+
+/* Prevent hover highlight on the static header row */
+.catalogue__header:hover { background: transparent; }
+
+/* ------------- Sold rows ------------- */
+
+.cat-row--sold {
+  opacity: 0.5;
+  pointer-events: auto; /* still clickable to view the page */
+}
+
+.cat-row--sold:hover {
+  background: transparent;
+  cursor: default;
+}
+
+.pill--sold {
+  border-color: transparent;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+}
+
+/* ------------- Search bar ------------- */
+
+.filterbar--search {
+  margin-top: 10px;
+}
+
+.filterbar--search input[type="search"] {
+  width: 100%;
+  max-width: 480px;
+  padding: 8px 14px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  outline: none;
+  transition: border-color .15s;
+  -webkit-appearance: none;
+}
+
+.filterbar--search input[type="search"]:focus {
+  border-color: var(--ink-soft);
+}
+
+.filterbar--search input[type="search"]::placeholder {
+  color: var(--ink-faint);
+}
+
+/* ------------- View spacer ------------- */
+
+.filterbar__spacer {
+  flex: 1;
+}
+
+/* ------------- Empty / error states ------------- */
+
+.catalogue__error {
+  list-style: none;
+  padding: 40px 0;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+}

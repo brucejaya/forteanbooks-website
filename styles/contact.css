@@ -1,0 +1,56 @@
+/* =========================================================
+   contact.css — contact page-specific styles
+   ========================================================= */
+
+/* ------------- Contact options ------------- */
+
+.contact-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.contact-option h3 { font-size: 32px; }
+
+.contact-option p {
+  font-size: 17px;
+  color: var(--ink-soft);
+  margin-top: 16px;
+  max-width: 38ch;
+}
+
+/* ------------- Shortcut cards ------------- */
+
+.shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.shortcut-card {
+  display: block;
+  padding: 32px;
+  background: var(--paper);
+  text-decoration: none;
+  color: var(--ink);
+  transition: background .15s;
+}
+
+.shortcut-card:hover { background: var(--paper-deep); color: var(--ink); }
+
+.shortcut-card--oxblood { border-top: 2px solid var(--oxblood); }
+.shortcut-card--indigo  { border-top: 2px solid var(--indigo); }
+.shortcut-card--ochre   { border-top: 2px solid var(--ochre); }
+
+.shortcut-card h3 { font-size: 26px; margin-top: 12px; }
+
+.shortcut-card p {
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin-top: 12px;
+}
+
+@media (max-width: 980px) {
+  .contact-options { grid-template-columns: 1fr; }
+  .shortcut-grid   { grid-template-columns: 1fr; }
+}
