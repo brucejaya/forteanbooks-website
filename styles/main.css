@@ -140,7 +140,7 @@ hr.double::after {
 }
 .section-head h2 { margin: 0; }
 
-/* ------------- Site header ------------- */
+/* ------------- Site header — single row ------------- */
 
 .site-header {
   border-bottom: 1px solid var(--rule);
@@ -148,129 +148,112 @@ hr.double::after {
   position: sticky;
   top: 0;
   z-index: 30;
-  /* Smooth transition for the transparent→opaque scroll effect */
-  transition: background .4s ease, border-color .4s ease;
+  transition: background .35s ease, border-color .35s ease;
 }
-
-/* ── Transparent variant — homepage hero overlay ── */
-.site-header--transparent {
-  background: transparent;
-  border-bottom-color: transparent;
-}
-.site-header--transparent .site-header__left,
-.site-header--transparent .site-header__right,
-.site-header--transparent .site-header__right a,
-.site-header--transparent .wordmark {
-  color: rgba(255, 255, 255, 0.82);
-  transition: color .4s ease;
-}
-.site-header--transparent .wordmark__dot {
-  background: rgba(255, 255, 255, 0.75);
-  transition: background .4s ease;
-}
-.site-header--transparent .cart-pill {
-  border-color: rgba(255, 255, 255, 0.25);
-  color: rgba(255, 255, 255, 0.82);
-}
-.site-header--transparent .subnav {
-  border-top-color: rgba(255, 255, 255, 0.12);
-}
-.site-header--transparent .subnav a {
-  color: rgba(255, 255, 255, 0.65);
-}
-.site-header--transparent .subnav a:hover,
-.site-header--transparent .site-header__right a:hover {
-  color: #fff;
-}
-.site-header__row {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+.site-header__inner {
+  display: flex;
   align-items: center;
-  padding: 18px var(--gut);
+  height: 58px;
   max-width: var(--max);
   margin: 0 auto;
-  gap: 24px;
+  padding: 0 var(--gut);
+  gap: 36px;
 }
-.site-header__left { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); transition: color .4s ease; }
-.site-header__right {
-  display: flex;
-  justify-content: flex-end;
-  gap: 22px;
-  align-items: center;
-  font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.site-header__right a { text-decoration: none; color: var(--ink-soft); transition: color .4s ease; }
-.site-header__right a:hover { color: var(--oxblood); }
+
+/* ── Wordmark ── */
 .wordmark {
   font-family: var(--f-display);
-  font-size: 30px;
+  font-size: 28px;
   font-style: italic;
   font-weight: 500;
   letter-spacing: -0.01em;
   text-decoration: none;
   color: var(--ink);
-  transition: color .4s ease;
+  transition: color .35s ease;
   display: inline-flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 7px;
   white-space: nowrap;
-}
-.wordmark .amp {
-  font-family: var(--f-display);
-  font-style: italic;
+  flex-shrink: 0;
 }
 .wordmark__dot {
   display: inline-block;
-  width: 6px; height: 6px;
+  width: 5px; height: 5px;
   background: var(--oxblood);
   border-radius: 50%;
   transform: translateY(-3px);
+  transition: background .35s ease;
 }
 
+/* ── Primary nav ── */
+.site-nav {
+  flex: 1;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+.site-nav a {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 16px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color .35s ease;
+  position: relative;
+  white-space: nowrap;
+}
+.site-nav a.is-current::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: -5px;
+  transform: translateX(-50%);
+  width: 4px; height: 4px;
+  background: var(--oxblood);
+  border-radius: 50%;
+}
+.site-nav a:hover { color: var(--oxblood); }
+
+/* ── Cart pill ── */
 .cart-pill {
   border: 1px solid var(--rule);
-  padding: 6px 12px;
+  padding: 5px 12px;
   border-radius: 999px;
   background: var(--paper-warm);
   font-family: var(--f-mono);
   font-size: 10px;
-}
-.cart-pill .count { color: var(--oxblood); }
-
-/* ------------- Navigation row ------------- */
-
-.subnav {
-  display: flex;
-  justify-content: center;
-  gap: 36px;
-  padding: 14px var(--gut);
-  border-bottom: 1px solid var(--rule);
-  font-family: var(--f-display);
-  background: var(--paper);
-}
-.subnav a {
+  letter-spacing: 0.1em;
   text-decoration: none;
-  font-size: 17px;
-  color: var(--ink);
-  font-style: italic;
-  position: relative;
+  color: var(--ink-soft);
   white-space: nowrap;
+  flex-shrink: 0;
+  transition: color .35s ease, border-color .35s ease, background .35s ease;
 }
-.subnav a.is-current::after {
-  content:"";
-  position:absolute;
-  left: 50%;
-  bottom: -16px;
-  width: 6px; height: 6px;
-  background: var(--oxblood);
-  border-radius: 50%;
-  transform: translateX(-50%);
+
+/* ── Transparent variant — homepage only, applied in HTML ── */
+.site-header--transparent {
+  background: transparent;
+  border-bottom-color: transparent;
 }
-.subnav a:hover { color: var(--oxblood); }
+.site-header--transparent .wordmark,
+.site-header--transparent .site-nav a,
+.site-header--transparent .cart-pill {
+  color: rgba(255, 255, 255, 0.80);
+}
+.site-header--transparent .wordmark__dot {
+  background: rgba(255, 255, 255, 0.70);
+}
+.site-header--transparent .cart-pill {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: transparent;
+}
+.site-header--transparent .site-nav a:hover,
+.site-header--transparent .wordmark:hover {
+  color: #fff;
+}
+.site-header--transparent .site-nav a.is-current::after {
+  background: rgba(255, 255, 255, 0.60);
+}
 
 /* ------------- Hero ------------- */
 
@@ -938,6 +921,21 @@ input:focus, textarea:focus, select:focus { border-bottom-color: var(--oxblood);
   text-align: center;
   position: relative;
 }
+/* Typing cursor in hero title */
+.hero-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.82em;
+  background: currentColor;
+  margin-left: 2px;
+  vertical-align: -0.08em;
+  animation: cursor-blink .85s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
 .hero-centered__eyebrow {
   font-family: var(--f-mono);
   font-size: 11px;

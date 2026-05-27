@@ -13,24 +13,18 @@
 </head>
 <body>
 
-<header class="site-header">
-  <div class="site-header__row">
-    <span class="site-header__left">Forteana &amp; the unexplained · UK</span>
+<header class="site-header site-header--transparent">
+  <div class="site-header__inner">
     <a href="index.html" class="wordmark">Fortean<span class="wordmark__dot"></span>Books</a>
-    <div class="site-header__right">
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html" class="is-current">Home</a>
       <a href="books.html">Catalogue</a>
-      <a href="#" class="snipcart-checkout">
-        <span class="cart-pill">Cart · <span class="snipcart-items-count">0</span></span>
-      </a>
-    </div>
+      <a href="about.html">About</a>
+      <a href="sell.html">Sell to us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="#" class="snipcart-checkout cart-pill">Cart · <span class="snipcart-items-count">0</span></a>
   </div>
-  <nav class="subnav" aria-label="Main">
-    <a href="index.html" class="is-current">Home</a>
-    <a href="books.html">Catalogue</a>
-    <a href="about.html">About</a>
-    <a href="sell.html">Sell to us</a>
-    <a href="contact.html">Contact</a>
-  </nav>
 </header>
 
 <main>
@@ -39,12 +33,11 @@
   <section class="hero-centered">
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <div class="wrap">
-      <p class="hero-centered__eyebrow">A small UK online bookshop</p>
       <h1 class="hero-centered__title">
-        Books on the<br>unexplained<span class="accent">.</span>
+        Books on<br>the <span id="hero-word">unexplained</span><span class="hero-cursor" aria-hidden="true"></span><span class="accent">.</span>
       </h1>
       <p class="hero-centered__epigraph">
-        Mostly mid-century paperbacks on flying saucers, the paranormal, esoterica, and the further reaches of the mind.
+        Mid-century paperbacks on flying saucers, the paranormal, esoterica, and the further reaches of the mind.
       </p>
       <p class="hero-centered__actions">
         <a href="books.html" class="btn btn--ghost">Browse the catalogue →</a>
@@ -418,26 +411,57 @@
   })();
 }());
 
-/* ── Transparent header at scroll-top ──────────────────────────────────────
-   Adds .site-header--transparent at scrollY=0 so it blends into the hero.
-   CSS transition handles the fade-in to opaque as the user scrolls.
+/* ── Transparent header ─────────────────────────────────────────────────────
+   Class is already in the HTML so there's no load-time flash.
+   JS only handles removal on scroll.
    ───────────────────────────────────────────────────────────────────────── */
 (function () {
   var header = document.querySelector('.site-header');
-  if (!header) return;
+  var hero   = document.querySelector('.hero-centered');
+  if (!header || !hero) return;
 
-  var THRESHOLD = 72; /* px — becomes opaque once scrolled past this */
+  window.addEventListener('scroll', function () {
+    var past = window.scrollY > hero.offsetHeight * 0.55;
+    header.classList.toggle('site-header--transparent', !past);
+  }, { passive: true });
+}());
 
-  function update() {
-    if (window.scrollY < THRESHOLD) {
-      header.classList.add('site-header--transparent');
+/* ── Hero typewriter ─────────────────────────────────────────────────────────
+   Cycles through adjectives on the hero title word.
+   ───────────────────────────────────────────────────────────────────────── */
+(function () {
+  var el = document.getElementById('hero-word');
+  if (!el) return;
+
+  var words    = ['impossible', 'weird', 'mysterious', 'fantastic', 'terrifying', 'unexplained'];
+  var wi       = words.length - 1; /* start on 'unexplained' (matches HTML) */
+  var ci       = words[wi].length; /* cursor at end of word                 */
+  var deleting = false;
+
+  function tick() {
+    if (deleting) {
+      ci--;
+      el.textContent = words[wi].slice(0, ci);
+      if (ci === 0) {
+        deleting = false;
+        wi = (wi + 1) % words.length;
+        setTimeout(tick, 180); /* brief pause before typing next word */
+      } else {
+        setTimeout(tick, 38);
+      }
     } else {
-      header.classList.remove('site-header--transparent');
+      ci++;
+      el.textContent = words[wi].slice(0, ci);
+      if (ci === words[wi].length) {
+        deleting = true;
+        setTimeout(tick, 2400); /* hold fully-typed word before deleting */
+      } else {
+        setTimeout(tick, 72);
+      }
     }
   }
 
-  window.addEventListener('scroll', update, { passive: true });
-  update(); /* set immediately on load */
+  setTimeout(tick, 2000); /* initial hold on 'unexplained' before first cycle */
 }());
 </script>
 
