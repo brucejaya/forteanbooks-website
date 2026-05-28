@@ -318,6 +318,21 @@ hr.double::after {
   background: rgba(255, 255, 255, 0.60);
 }
 
+/* ── Instagram icon button ── */
+.ig-btn {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+  text-decoration: none;
+  opacity: 0.55;
+  padding: 3px;
+  transition: opacity .15s, color .15s;
+  flex-shrink: 0;
+}
+.ig-btn:hover { opacity: 1; color: var(--oxblood); text-decoration: none; }
+.site-header--transparent .ig-btn { color: rgba(255,255,255,0.80); opacity: 1; }
+.site-header--transparent .ig-btn:hover { color: #fff; }
+
 /* ------------- Burger menu button ------------- */
 
 .burger-btn {
@@ -626,24 +641,23 @@ hr.double::after {
 /* ------------- Newsletter ------------- */
 
 .newsletter {
-  /* Animated gradient — same palette as the hero WebGL shader:
-     near-black base, oxblood (#6e1d1d), indigo (#25365c), purple midpoint */
-  background: linear-gradient(135deg,
-    #08060f 0%,
-    #1e1030 20%,
-    #4a1212 45%,
-    #1d2a50 70%,
-    #08060f 100%
-  );
-  background-size: 400% 400%;
-  animation: newsletter-shift 20s ease infinite;
+  /* Dark fallback for non-WebGL — canvas renders on top on index.html */
+  background: #08060f;
   padding: 96px 0;
   position: relative;
+  overflow: hidden;
 }
-@keyframes newsletter-shift {
-  0%   { background-position: 0%   50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0%   50%; }
+#newsletter-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+.newsletter .wrap {
+  position: relative;
+  z-index: 1;
 }
 .newsletter__grid {
   display: grid;
