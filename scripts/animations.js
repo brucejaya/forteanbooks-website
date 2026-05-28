@@ -1,172 +1,178 @@
 /* ────────────────────────────────────────────────────────────────────────────
-   Fortean Books -- GSAP page-load and scroll animations
-   Included on display pages only: index, about, sell, partner, contact, info.
-   NOT included on shop.html or book detail pages.
+   Fortean Books -- GSAP animations
+   Display pages only: index, about, sell, partner, contact, info.
+   NOT on shop.html or book detail pages.
+
+   Principles:
+   - Small y-travel (16-24px): motion that clarifies sequence, not spectacle
+   - autoAlpha handles opacity + visibility together
+   - clearProps: 'all' after each animation (no lingering inline styles)
+   - about-grid: element-level timeline, not whole-column block
+   - ScrollTrigger.batch for staggered lists
    ─────────────────────────────────────────────────────────────────────────── */
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Elements inside these containers are animated as part of the container's
-   own sequence -- skip them from the generic individual handlers.            */
-var HERO_CONTAINERS = '.hero-centered, .page-hero, .about-hero';
-var SKIP_CONTAINERS = HERO_CONTAINERS + ', .about-grid, .section-head, .pull-quote';
+/* ── Helpers ─────────────────────────────────────────────────────────────── */
 
-function isSkipped(el, extra) {
-  var sel = SKIP_CONTAINERS + (extra ? ', ' + extra : '');
-  return !!el.closest(sel);
-}
-
-/* Single element fade-up tied to a scroll trigger */
-function scrollReveal(el, vars, start) {
-  gsap.from(el, Object.assign({}, vars, {
+/* Animate a single element from a state, triggered when it enters viewport */
+function reveal(el, vars, start) {
+  if (!el) return;
+  gsap.from(el, Object.assign({ clearProps: 'all' }, vars, {
     scrollTrigger: {
       trigger: el,
-      start:   start || 'top 88%',
+      start: start || 'top 89%',
       toggleActions: 'play none none none'
     }
   }));
 }
 
-/* Staggered reveal for a group via ScrollTrigger.batch --
-   fires once per viewport entry, naturally grouping rows of a grid. */
-function batchReveal(selector, vars, stagger) {
+/* Stagger a list of like elements with ScrollTrigger.batch --
+   naturally groups rows of a grid as they enter viewport together. */
+function stagger(selector, vars, gap) {
   if (!document.querySelector(selector)) return;
   ScrollTrigger.batch(selector, {
-    start: 'top 88%',
+    start: 'top 90%',
     onEnter: function(batch) {
-      gsap.from(batch, Object.assign({ stagger: stagger || 0.1 }, vars));
+      gsap.from(batch, Object.assign({ clearProps: 'all', stagger: gap || 0.1 }, vars));
     }
   });
 }
 
+/* Check if el is inside a container we handle elsewhere */
+function inside(el, sel) {
+  return !!el.closest(sel);
+}
 
-/* ── 1. Page-load hero intro ─────────────────────────────────────────────────
-   Fires on DOMContentLoaded (no scroll trigger). Sequences the top-of-page
-   section for both index.html (.hero-centered) and inner pages (.page-hero,
-   .about-hero).
+var HERO     = '.hero-centered, .page-hero, .about-hero';
+var MANAGED  = HERO + ', .about-grid, .section-head, .pull-quote';
+
+
+/* ── 1. Hero: page-load timeline ─────────────────────────────────────────────
+   No scroll trigger — fires immediately on script load. Gives the top section
+   a purposeful, sequenced entrance.
    ─────────────────────────────────────────────────────────────────────────── */
 (function () {
-  var hero = document.querySelector('.hero-centered, .page-hero, .about-hero');
+  var hero = document.querySelector(HERO);
   if (!hero) return;
 
   var eyebrow = hero.querySelector('.eyebrow');
-  var heading  = hero.querySelector('h1');
-  var lead     = hero.querySelector('.lead');
-  var cta      = hero.querySelector('.hero-centered__actions');
+  var h1      = hero.querySelector('h1');
+  var lead    = hero.querySelector('.lead');
+  var cta     = hero.querySelector('.hero-centered__actions');
 
-  var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 18, duration: 0.7  },  0.10);
-  if (heading)  tl.from(heading,  { opacity: 0, y: 44, duration: 0.92 },  0.26);
-  if (lead)     tl.from(lead,     { opacity: 0, y: 28, duration: 0.82 },  0.44);
-  if (cta)      tl.from(cta,      { opacity: 0, y: 24, duration: 0.72 },  0.62);
+  var tl = gsap.timeline({ defaults: { ease: 'power3.out', clearProps: 'all' } });
+  if (eyebrow) tl.from(eyebrow, { autoAlpha: 0, y: 14, duration: 0.65 }, 0.10);
+  if (h1)      tl.from(h1,      { autoAlpha: 0, y: 32, duration: 0.85 }, 0.24);
+  if (lead)    tl.from(lead,    { autoAlpha: 0, y: 20, duration: 0.75 }, 0.42);
+  if (cta)     tl.from(cta,     { autoAlpha: 0, y: 18, duration: 0.65 }, 0.58);
 }());
 
 
-/* ── 2. About-grid columns ───────────────────────────────────────────────────
-   Animates both columns of each .about-grid section as a staggered pair.
-   Left col: heading block. Right col: body copy. Both fade up, left first.
+/* ── 2. About-grid: element-level timeline ───────────────────────────────────
+   Each .about-grid creates its own scroll-triggered timeline.
+   Eyebrow → h2 → right column, each entering with a slight offset.
+   Much cleaner than animating the whole column div as a block.
    ─────────────────────────────────────────────────────────────────────────── */
 document.querySelectorAll('.about-grid').forEach(function(grid) {
-  var cols = Array.from(grid.children);
-  if (!cols.length) return;
-  ScrollTrigger.create({
-    trigger: grid,
-    start: 'top 86%',
-    toggleActions: 'play none none none',
-    onEnter: function() {
-      gsap.from(cols, {
-        opacity: 0, y: 36, duration: 0.9, ease: 'power3.out', stagger: 0.18
-      });
+  var eyebrow = grid.querySelector('.eyebrow');
+  var h2      = grid.querySelector('h2');
+  var muted   = grid.querySelector('.muted');
+  var col2    = grid.children[1];
+
+  var tl = gsap.timeline({
+    defaults: { ease: 'power2.out', clearProps: 'all' },
+    scrollTrigger: {
+      trigger: grid,
+      start: 'top 86%',
+      toggleActions: 'play none none none'
     }
   });
+
+  if (eyebrow) tl.from(eyebrow, { autoAlpha: 0, y: 14, duration: 0.55 }, 0);
+  if (h2)      tl.from(h2,      { autoAlpha: 0, y: 22, duration: 0.72, ease: 'power3.out' }, 0.14);
+  if (muted)   tl.from(muted,   { autoAlpha: 0,         duration: 0.55 }, 0.30);
+  if (col2)    tl.from(col2,    { autoAlpha: 0, y: 16, duration: 0.70 }, 0.18);
 });
 
 
-/* ── 3. Eyebrows (standalone -- not inside animated containers) ──────────── */
+/* ── 3. Section heads (.num + h2 pairing) ────────────────────────────────── */
+document.querySelectorAll('.section-head').forEach(function(el) {
+  var num = el.querySelector('.num');
+  var h2  = el.querySelector('h2');
+  var tl  = gsap.timeline({
+    defaults: { ease: 'power3.out', clearProps: 'all' },
+    scrollTrigger: { trigger: el, start: 'top 87%', toggleActions: 'play none none none' }
+  });
+  if (num) tl.from(num, { autoAlpha: 0, y: 14, duration: 0.6  }, 0);
+  if (h2)  tl.from(h2,  { autoAlpha: 0, y: 24, duration: 0.78 }, 0.16);
+});
+
+
+/* ── 4. Eyebrows — standalone (not already handled above) ───────────────── */
 document.querySelectorAll('.eyebrow').forEach(function(el) {
-  if (isSkipped(el)) return;
-  scrollReveal(el, { opacity: 0, y: 16, duration: 0.62, ease: 'power2.out' });
+  if (inside(el, MANAGED)) return;
+  reveal(el, { autoAlpha: 0, y: 12, duration: 0.55, ease: 'power2.out' });
 });
 
 
-/* ── 4. H2 headings (standalone) ────────────────────────────────────────── */
+/* ── 5. H2 headings — standalone ────────────────────────────────────────── */
 document.querySelectorAll('h2').forEach(function(el) {
-  if (isSkipped(el)) return;
-  scrollReveal(el, { opacity: 0, y: 40, duration: 0.88, ease: 'power3.out' }, 'top 86%');
+  if (inside(el, MANAGED)) return;
+  reveal(el, { autoAlpha: 0, y: 24, duration: 0.78, ease: 'power3.out' }, 'top 87%');
 });
 
 
-/* ── 5. HR rules -- wipe in from left ───────────────────────────────────── */
+/* ── 6. HR rules — wipe in from left ────────────────────────────────────── */
 document.querySelectorAll('hr').forEach(function(el) {
-  scrollReveal(
+  reveal(
     el,
-    { scaleX: 0, transformOrigin: 'left center', duration: 1.1, ease: 'power2.inOut' },
+    { scaleX: 0, transformOrigin: 'left center', duration: 1.0, ease: 'power2.inOut' },
     'top 92%'
   );
 });
 
 
-/* ── 6. Section heads (.section-head: num label + h2) ────────────────────── */
-document.querySelectorAll('.section-head').forEach(function(el) {
-  var num = el.querySelector('.num');
-  var h2  = el.querySelector('h2');
-  ScrollTrigger.create({
-    trigger: el,
-    start: 'top 87%',
-    toggleActions: 'play none none none',
-    onEnter: function() {
-      var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      if (num) tl.from(num, { opacity: 0, y: 18, duration: 0.65 }, 0);
-      if (h2)  tl.from(h2,  { opacity: 0, y: 40, duration: 0.88 }, 0.16);
-    }
-  });
-});
-
-
 /* ── 7. Pull quote ───────────────────────────────────────────────────────── */
 document.querySelectorAll('.pull-quote').forEach(function(el) {
-  scrollReveal(
-    el,
-    { opacity: 0, scale: 0.97, duration: 0.9, ease: 'power2.out' },
-    'top 85%'
-  );
+  reveal(el, { autoAlpha: 0, scale: 0.98, duration: 0.85, ease: 'power2.out' }, 'top 86%');
 });
 
 
-/* ── 8. Staggered card / list groups ────────────────────────────────────── */
+/* ── 8. Staggered groups ─────────────────────────────────────────────────── */
 
-/* Featured books -- index.html */
-batchReveal('.feature-card',
-  { opacity: 0, y: 44, duration: 0.82, ease: 'power3.out' },
-  0.09
+/* Feature cards — index.html, 3-col grid */
+stagger('.feature-card',
+  { autoAlpha: 0, y: 28, duration: 0.72, ease: 'power3.out' },
+  0.08
 );
 
-/* Subject list items -- index.html: slide in from left */
-batchReveal('.subject-list__item',
-  { opacity: 0, x: -20, duration: 0.65, ease: 'power2.out' },
-  0.07
+/* Subject list — index.html */
+stagger('.subject-list__item',
+  { autoAlpha: 0, y: 16, duration: 0.60, ease: 'power2.out' },
+  0.06
 );
 
-/* Process steps -- sell.html + partner.html */
-batchReveal('.process-step',
-  { opacity: 0, y: 40, duration: 0.78, ease: 'power3.out' },
+/* Process / options steps — sell.html + partner.html */
+stagger('.process-step',
+  { autoAlpha: 0, y: 24, duration: 0.68, ease: 'power3.out' },
+  0.11
+);
+
+/* Contact options — contact.html */
+stagger('.contact-option',
+  { autoAlpha: 0, y: 22, duration: 0.65, ease: 'power2.out' },
   0.12
 );
 
-/* Contact options -- contact.html */
-batchReveal('.contact-option',
-  { opacity: 0, y: 40, duration: 0.78, ease: 'power3.out' },
-  0.15
+/* Shortcut cards — contact.html */
+stagger('.shortcut-card',
+  { autoAlpha: 0, y: 26, duration: 0.68, ease: 'power3.out' },
+  0.09
 );
 
-/* Shortcut cards -- contact.html */
-batchReveal('.shortcut-card',
-  { opacity: 0, y: 42, scale: 0.97, duration: 0.78, ease: 'power3.out' },
-  0.10
-);
-
-/* Scope list items -- about.html */
-batchReveal('.scope-list li',
-  { opacity: 0, y: 30, duration: 0.72, ease: 'power2.out' },
-  0.10
+/* Scope list — about.html */
+stagger('.scope-list li',
+  { autoAlpha: 0, y: 18, duration: 0.62, ease: 'power2.out' },
+  0.09
 );
