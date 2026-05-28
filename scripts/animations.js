@@ -80,11 +80,16 @@ var MANAGED = HERO +
     cta     = null;
   }
 
-  /* Pre-hide all elements before the timeline runs */
+  /* Pre-hide all elements before the timeline runs.
+     gsap.set() writes inline styles that take precedence over the
+     .pre-anim CSS rule, so we can safely remove that class immediately
+     after without any visible change — clearProps at animation end
+     then removes the inline styles to a clean state. */
   if (eyebrow) gsap.set(eyebrow, { autoAlpha: 0, y: 14 });
   if (h1)      gsap.set(h1,      { autoAlpha: 0, y: 32 });
   if (lead)    gsap.set(lead,    { autoAlpha: 0, y: 20 });
   if (cta)     gsap.set(cta,     { autoAlpha: 0, y: 18 });
+  document.documentElement.classList.remove('pre-anim');
 
   var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
   if (eyebrow) tl.to(eyebrow, { autoAlpha: 1, y: 0, duration: 0.65, clearProps: 'all' }, 0.10);

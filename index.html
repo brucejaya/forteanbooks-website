@@ -13,10 +13,21 @@
   <meta property="og:url" content="https://forteanbooks.com/">
   <link rel="preconnect" href="https://app.snipcart.com">
   <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/snipcart.css">
   <link rel="stylesheet" href="styles/index.css">
+  <!-- Pre-hide hero text so animations.js can reveal it without flash.
+       The class is removed inside animations.js once GSAP has set
+       its own inline styles, so clearProps does not re-expose this rule. -->
+  <style>
+    .pre-anim .hero-centered__eyebrow,
+    .pre-anim .hero-centered__title,
+    .pre-anim .hero-centered__epigraph,
+    .pre-anim .hero-centered__actions { opacity:0; visibility:hidden; }
+  </style>
+  <script>document.documentElement.classList.add('pre-anim');</script>
 </head>
 <body>
 
@@ -458,9 +469,9 @@ runShader('newsletter-canvas', 0.55);
 }());
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="scripts/animations.js"></script>
-<script src="scripts/nav.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script defer src="scripts/animations.js"></script>
+<script defer src="scripts/nav.js"></script>
 </body>
 </html>
