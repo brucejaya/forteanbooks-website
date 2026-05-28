@@ -522,12 +522,21 @@
 
 
 /* ── Empty basket state ─────────────────────────────────────
-   "Back to shop" button should be full width.
+   Full-height flex column so "Back to shop" pins to the bottom.
    ─────────────────────────────────────────────────────────── */
 
 .snipcart-empty-cart {
-  padding: 0 28px !important;
-  box-sizing: border-box !important;
+  display:        flex !important;
+  flex-direction: column !important;
+  flex:           1 !important;
+  height:         100% !important;
+  padding:        0 28px !important;
+  box-sizing:     border-box !important;
+}
+
+.snipcart-empty-cart__actions {
+  margin-top:     auto !important;
+  padding-bottom: 28px !important;
 }
 
 .snipcart-empty-cart .snipcart-button-primary,
