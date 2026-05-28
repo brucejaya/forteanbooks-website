@@ -3,29 +3,32 @@
    Display pages only: index, about, sell, partner, contact, info.
    NOT on shop.html or book detail pages.
 
-   Principles:
-   - Small y-travel (16-24px): motion that clarifies sequence, not spectacle
-   - autoAlpha handles opacity + visibility together
-   - clearProps: 'all' after each animation (no lingering inline styles)
-   - immediateRender: true on all from() tweens -- GSAP applies the initial
-     state synchronously when the tween is created, before any scroll event,
-     so elements are hidden from the first paint and never flash
-   - about-grid: element-level timeline, not whole-column block
+   Flash-free pattern throughout:
+     gsap.set(el, fromState)   -- hides element synchronously on script load,
+                                  before any paint or scroll event fires
+     gsap.to(el,  toState)     -- reveals when trigger fires
+   This avoids the "show -> snap to hidden -> animate in" pattern that
+   gsap.from() / tl.from() produce when the element is already painted.
    ─────────────────────────────────────────────────────────────────────────── */
 
 gsap.registerPlugin(ScrollTrigger);
 
 /* ── Helpers ─────────────────────────────────────────────────────────────── */
 
-/* Animate a single element from a state when it enters the viewport.
-   immediateRender: true makes GSAP apply the from-state immediately on
-   tween creation (synchronous, before any paint), preventing flash. */
-function reveal(el, vars, start) {
+/* Hide el immediately, then reveal it when it enters the viewport.
+   gsap.set is synchronous -- runs before any paint.  */
+function reveal(el, fromVars, start) {
   if (!el) return;
-  gsap.from(el, Object.assign({ clearProps: 'all', immediateRender: true }, vars, {
+  gsap.set(el, fromVars);
+  gsap.to(el, Object.assign({}, fromVars, {
+    /* override every animated property to its natural value */
+    autoAlpha: 1, y: 0, scale: 1, scaleX: 1,
+    duration:   fromVars.duration  || 0.7,
+    ease:       fromVars.ease      || 'power2.out',
+    clearProps: 'all',
     scrollTrigger: {
       trigger: el,
-      start: start || 'top 70%',
+      start:   start || 'top 70%',
       toggleActions: 'play none none none'
     }
   }));
@@ -41,9 +44,8 @@ var MANAGED  = HERO + ', .about-grid, .section-head, .pull-quote';
 
 
 /* ── 1. Hero: page-load timeline ─────────────────────────────────────────────
-   No scroll trigger -- fires immediately on script load. Gives the top section
-   a purposeful, sequenced entrance. Selectors differ between index (.hero-centered)
-   and inner pages (.page-hero / .about-hero).
+   gsap.set() hides all hero elements before the timeline starts, so there
+   is no flash between first paint and the first timeline step.
    ─────────────────────────────────────────────────────────────────────────── */
 (function () {
   var hero = document.querySelector(HERO);
@@ -52,30 +54,35 @@ var MANAGED  = HERO + ', .about-grid, .section-head, .pull-quote';
   var eyebrow, h1, lead, cta;
 
   if (hero.classList.contains('hero-centered')) {
-    /* index.html -- BEM element classes */
     eyebrow = hero.querySelector('.hero-centered__eyebrow');
     h1      = hero.querySelector('.hero-centered__title');
     lead    = hero.querySelector('.hero-centered__epigraph');
     cta     = hero.querySelector('.hero-centered__actions');
   } else {
-    /* page-hero / about-hero -- generic classes */
     eyebrow = hero.querySelector('.eyebrow');
     h1      = hero.querySelector('h1');
     lead    = hero.querySelector('.lead');
     cta     = null;
   }
 
-  var tl = gsap.timeline({ defaults: { ease: 'power3.out', clearProps: 'all' } });
-  if (eyebrow) tl.from(eyebrow, { autoAlpha: 0, y: 14, duration: 0.65 }, 0.10);
-  if (h1)      tl.from(h1,      { autoAlpha: 0, y: 32, duration: 0.85 }, 0.24);
-  if (lead)    tl.from(lead,    { autoAlpha: 0, y: 20, duration: 0.75 }, 0.42);
-  if (cta)     tl.from(cta,     { autoAlpha: 0, y: 18, duration: 0.65 }, 0.58);
+  /* Hide immediately */
+  if (eyebrow) gsap.set(eyebrow, { autoAlpha: 0, y: 14 });
+  if (h1)      gsap.set(h1,      { autoAlpha: 0, y: 32 });
+  if (lead)    gsap.set(lead,    { autoAlpha: 0, y: 20 });
+  if (cta)     gsap.set(cta,     { autoAlpha: 0, y: 18 });
+
+  /* Reveal in sequence */
+  var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  if (eyebrow) tl.to(eyebrow, { autoAlpha: 1, y: 0, duration: 0.65, clearProps: 'all' }, 0.10);
+  if (h1)      tl.to(h1,      { autoAlpha: 1, y: 0, duration: 0.85, clearProps: 'all' }, 0.24);
+  if (lead)    tl.to(lead,    { autoAlpha: 1, y: 0, duration: 0.75, clearProps: 'all' }, 0.42);
+  if (cta)     tl.to(cta,     { autoAlpha: 1, y: 0, duration: 0.65, clearProps: 'all' }, 0.58);
 }());
 
 
 /* ── 2. About-grid: element-level timeline ───────────────────────────────────
-   Each .about-grid creates its own scroll-triggered timeline.
-   Eyebrow -> h2 -> right column, each entering with a slight offset.
+   Each element is pre-hidden via gsap.set() so the grid is invisible from
+   script-load onwards. Timeline reveals elements when the grid scrolls in.
    ─────────────────────────────────────────────────────────────────────────── */
 document.querySelectorAll('.about-grid').forEach(function(grid) {
   var eyebrow = grid.querySelector('.eyebrow');
@@ -83,8 +90,14 @@ document.querySelectorAll('.about-grid').forEach(function(grid) {
   var muted   = grid.querySelector('.muted');
   var col2    = grid.children[1];
 
+  /* Hide immediately */
+  if (eyebrow) gsap.set(eyebrow, { autoAlpha: 0, y: 14 });
+  if (h2)      gsap.set(h2,      { autoAlpha: 0, y: 22 });
+  if (muted)   gsap.set(muted,   { autoAlpha: 0 });
+  if (col2)    gsap.set(col2,    { autoAlpha: 0, y: 16 });
+
   var tl = gsap.timeline({
-    defaults: { ease: 'power2.out', clearProps: 'all' },
+    defaults: { ease: 'power2.out' },
     scrollTrigger: {
       trigger: grid,
       start: 'top 70%',
@@ -92,10 +105,10 @@ document.querySelectorAll('.about-grid').forEach(function(grid) {
     }
   });
 
-  if (eyebrow) tl.from(eyebrow, { autoAlpha: 0, y: 14, duration: 0.55 }, 0);
-  if (h2)      tl.from(h2,      { autoAlpha: 0, y: 22, duration: 0.72, ease: 'power3.out' }, 0.14);
-  if (muted)   tl.from(muted,   { autoAlpha: 0,         duration: 0.55 }, 0.30);
-  if (col2)    tl.from(col2,    { autoAlpha: 0, y: 16, duration: 0.70 }, 0.18);
+  if (eyebrow) tl.to(eyebrow, { autoAlpha: 1, y: 0, duration: 0.55, clearProps: 'all' }, 0);
+  if (h2)      tl.to(h2,      { autoAlpha: 1, y: 0, duration: 0.72, ease: 'power3.out', clearProps: 'all' }, 0.14);
+  if (muted)   tl.to(muted,   { autoAlpha: 1,        duration: 0.55, clearProps: 'all' }, 0.30);
+  if (col2)    tl.to(col2,    { autoAlpha: 1, y: 0, duration: 0.70, clearProps: 'all' }, 0.18);
 });
 
 
@@ -103,12 +116,16 @@ document.querySelectorAll('.about-grid').forEach(function(grid) {
 document.querySelectorAll('.section-head').forEach(function(el) {
   var num = el.querySelector('.num');
   var h2  = el.querySelector('h2');
-  var tl  = gsap.timeline({
-    defaults: { ease: 'power3.out', clearProps: 'all' },
+
+  if (num) gsap.set(num, { autoAlpha: 0, y: 14 });
+  if (h2)  gsap.set(h2,  { autoAlpha: 0, y: 24 });
+
+  var tl = gsap.timeline({
+    defaults: { ease: 'power3.out' },
     scrollTrigger: { trigger: el, start: 'top 70%', toggleActions: 'play none none none' }
   });
-  if (num) tl.from(num, { autoAlpha: 0, y: 14, duration: 0.6  }, 0);
-  if (h2)  tl.from(h2,  { autoAlpha: 0, y: 24, duration: 0.78 }, 0.16);
+  if (num) tl.to(num, { autoAlpha: 1, y: 0, duration: 0.6,  clearProps: 'all' }, 0);
+  if (h2)  tl.to(h2,  { autoAlpha: 1, y: 0, duration: 0.78, clearProps: 'all' }, 0.16);
 });
 
 
@@ -128,11 +145,7 @@ document.querySelectorAll('h2').forEach(function(el) {
 
 /* ── 6. HR rules -- wipe in from left ────────────────────────────────────── */
 document.querySelectorAll('hr').forEach(function(el) {
-  reveal(
-    el,
-    { scaleX: 0, transformOrigin: 'left center', duration: 1.0, ease: 'power2.inOut' },
-    'top 80%'
-  );
+  reveal(el, { scaleX: 0, duration: 1.0, ease: 'power2.inOut', transformOrigin: 'left center' }, 'top 80%');
 });
 
 
@@ -142,11 +155,8 @@ document.querySelectorAll('.pull-quote').forEach(function(el) {
 });
 
 
-/* ── 8. Staggered groups ─────────────────────────────────────────────────── */
-/* Per-element reveals rather than ScrollTrigger.batch -- eliminates flash.
-   gsap.from() with immediateRender:true hides each element synchronously
-   the moment the script runs, before any paint. No visible snap ever occurs.
-   Feature-cards and subject-list items intentionally excluded (above the fold). */
+/* ── 8. Staggered groups (per-element reveals) ───────────────────────────── */
+/* Feature-cards and subject-list items excluded -- above the fold. */
 
 document.querySelectorAll('.process-step').forEach(function(el) {
   reveal(el, { autoAlpha: 0, y: 24, duration: 0.68, ease: 'power3.out' });
