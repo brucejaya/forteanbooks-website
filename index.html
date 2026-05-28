@@ -33,6 +33,7 @@
     </nav>
     <div class="site-header__actions">
       <a href="shop.html" class="shop-btn">Shop</a>
+      <a href="https://instagram.com/forteanbooks" class="ig-btn" aria-label="Fortean Books on Instagram" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
       <a href="#" class="snipcart-checkout cart-pill"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg> Basket · <span class="snipcart-items-count">0</span></a>
     </div>
     <button class="burger-btn" id="burger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
@@ -58,6 +59,7 @@
   </nav>
   <div class="mobile-nav__foot">
     <a href="shop.html" class="shop-btn">Shop</a>
+      <a href="https://instagram.com/forteanbooks" class="ig-btn" aria-label="Fortean Books on Instagram" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
     <a href="#" class="snipcart-checkout cart-pill"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg> Basket · <span class="snipcart-items-count">0</span></a>
   </div>
 </div>
@@ -236,6 +238,7 @@
 
   <!-- Newsletter -->
   <section class="newsletter">
+    <canvas id="newsletter-canvas" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="newsletter__grid">
         <div>
@@ -303,13 +306,12 @@
 <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
 
 <script>
-/* ── Hero shader ────────────────────────────────────────────────────────────
-   Domain-warped FBM noise (Inigo Quilez technique).
-   Deep indigo base, mauve/violet swirling through it.
-   Falls back silently to CSS if WebGL unavailable.
+/* ── Shader: domain-warped FBM noise (Inigo Quilez technique) ───────────────
+   Runs on hero-canvas and newsletter-canvas.
+   Falls back silently to CSS background if WebGL unavailable.
    ───────────────────────────────────────────────────────────────────────── */
-(function () {
-  var canvas = document.getElementById('hero-canvas');
+function runShader(canvasId, speed) {
+  var canvas = document.getElementById(canvasId);
   if (!canvas) return;
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
   if (!gl) return; /* CSS fallback background kicks in */
@@ -423,12 +425,14 @@
   var t0 = performance.now();
   (function frame() {
     resize();
-    gl.uniform1f(uT,   (performance.now() - t0) * 0.001);
+    gl.uniform1f(uT,   (performance.now() - t0) * 0.001 * speed);
     gl.uniform2f(uRes, canvas.width, canvas.height);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     requestAnimationFrame(frame);
   })();
-}());
+}
+runShader('hero-canvas',       1.0);   /* hero: full speed */
+runShader('newsletter-canvas', 0.55);  /* newsletter: slower, calmer */
 
 /* ── Transparent header ─────────────────────────────────────────────────────
    Class is already in the HTML so there's no load-time flash.
