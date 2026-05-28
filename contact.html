@@ -1,214 +1,502 @@
 <!doctype html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8">
+
   <meta name="viewport" content="width=device-width,initial-scale=1">
+
   <title>Contact — Fortean Books</title>
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <meta name="description" content="Get in touch with Fortean Books — orders, specific title requests, selling enquiries, or anything else. Usually answered the same day.">
+
+  <meta property="og:site_name" content="Fortean Books">
+
+  <meta property="og:type" content="website">
+
+  <meta property="og:title" content="Contact — Fortean Books">
+
+  <meta property="og:description" content="Get in touch with Fortean Books — orders, specific title requests, selling enquiries, or anything else. Usually answered the same day.">
+
+  <meta property="og:url" content="https://forteanbooks.co.uk/contact.html">
+
   <link rel="preconnect" href="https://app.snipcart.com">
+
   <link rel="preconnect" href="https://cdn.snipcart.com">
+
   <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css">
+
   <link rel="stylesheet" href="styles/main.css">
+
+  <link rel="stylesheet" href="styles/snipcart.css">
+
   <link rel="stylesheet" href="styles/contact.css">
+
 </head>
+
 <body>
 
+
+
 <header class="site-header">
+
   <div class="site-header__inner">
+
     <a href="index.html" class="wordmark">Fortean<span class="wordmark__dot"></span>Books</a>
+
     <nav class="site-nav" aria-label="Main">
+
       <a href="index.html">Home</a>
-      <a href="books.html">Catalogue</a>
+
+      <a href="books.html">Shop</a>
+
       <a href="about.html">About</a>
+
       <a href="sell.html">Sell to us</a>
+
+      <a href="partner.html">Partner with us</a>
+
       <a href="contact.html" class="is-current">Contact</a>
+
     </nav>
-    <a href="#" class="snipcart-checkout cart-pill">Cart · <span class="snipcart-items-count">0</span></a>
+
+    <div class="site-header__actions">
+
+      <a href="books.html" class="shop-btn">Shop</a>
+
+      <a href="#" class="snipcart-checkout cart-pill"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg> Basket · <span class="snipcart-items-count">0</span></a>
+
+    </div>
+
+    <button class="burger-btn" id="burger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+
+      <span></span><span></span><span></span>
+
+    </button>
+
   </div>
+
 </header>
+
+
+
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+
+  <div class="mobile-nav__head">
+
+    <a href="index.html" class="wordmark">Fortean<span class="wordmark__dot"></span>Books</a>
+
+    <button class="mobile-nav__close" id="mobile-nav-close" aria-label="Close menu">
+
+      <span></span><span></span>
+
+    </button>
+
+  </div>
+
+  <nav class="mobile-nav__links" aria-label="Mobile navigation">
+
+    <a href="index.html">Home</a>
+
+    <a href="books.html">Shop</a>
+
+    <a href="about.html">About</a>
+
+    <a href="sell.html">Sell to us</a>
+
+    <a href="partner.html">Partner with us</a>
+
+    <a href="contact.html">Contact</a>
+
+  </nav>
+
+  <div class="mobile-nav__foot">
+
+    <a href="books.html" class="shop-btn">Shop</a>
+
+    <a href="#" class="snipcart-checkout cart-pill"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg> Basket · <span class="snipcart-items-count">0</span></a>
+
+  </div>
+
+</div>
+
+
 
 <main>
 
+
+
   <!-- Page hero -->
+
   <section class="page-hero">
+
     <div class="wrap">
+
       <div class="page-hero__grid">
+
         <div>
+
           <p class="eyebrow">§ Get in touch</p>
+
           <h1>Send a<br><em>note.</em></h1>
+
         </div>
+
         <div>
+
           <p class="lead"><em>Whatever it's about — a book you're looking for, a question on an order, something you want to sell — it comes to the same inbox. Usually answered the same day.</em></p>
+
         </div>
+
       </div>
+
     </div>
+
   </section>
+
+
 
   <!-- Contact options -->
+
   <section class="section">
+
     <div class="wrap">
+
       <div class="contact-options">
 
-        <div class="contact-option">
-          <p class="eyebrow">§ By email</p>
-          <h3>books@<wbr>forteanbooks.<wbr>co.uk</h3>
-          <p>The fastest way to reach me. For selling enquiries the dedicated <a href="sell.html">sell page</a> form is better — it asks the right questions.</p>
-        </div>
+
 
         <div class="contact-option">
-          <p class="eyebrow">§ By form</p>
-          <h3>The form<br>below.</h3>
-          <p>It goes to the same place. Slightly more structured if you've got a few things to ask at once.</p>
+
+          <p class="eyebrow">§ By email</p>
+
+          <h3>books@<wbr>forteanbooks.<wbr>co.uk</h3>
+
+          <p>The fastest way to reach us. For selling enquiries the dedicated <a href="sell.html">sell page</a> form is better — it asks the right questions.</p>
+
         </div>
+
+
+
+        <div class="contact-option">
+
+          <p class="eyebrow">§ By form</p>
+
+          <h3>The form<br>below.</h3>
+
+          <p>It goes to the same place. Slightly more structured if you've got a few things to ask at once.</p>
+
+        </div>
+
+
 
       </div>
+
     </div>
+
   </section>
+
+
 
   <hr class="thin">
 
+
+
   <!-- Contact form -->
+
   <section class="section">
+
     <div class="wrap--narrow">
+
       <h2>Anything you'd like to ask.</h2>
-      <p class="form-lead">If you're looking for a specific title that isn't currently listed, do say — I keep a list of wants and email people when something turns up.</p>
+
+      <p class="form-lead">If you're looking for a specific title that isn't currently listed, do say — we keep a wants list and get in touch when something turns up.</p>
+
+
 
       <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+
         <input type="hidden" name="form-name" value="contact">
+
         <p class="honeypot"><label>Don't fill this out: <input name="bot-field"></label></p>
 
+
+
         <div class="form-grid-2">
+
           <div class="form-row">
+
             <label for="cname">Your name</label>
+
             <input type="text" id="cname" name="name" required>
+
           </div>
+
           <div class="form-row">
+
             <label for="cemail">Email</label>
+
             <input type="email" id="cemail" name="email" required>
+
           </div>
+
         </div>
 
+
+
         <div class="form-row">
+
           <label for="subject">What's it about?</label>
+
           <select id="subject" name="subject">
+
             <option>A general question</option>
+
             <option>I'm looking for a specific title</option>
+
             <option>Order or shipping query</option>
+
             <option>Trade enquiry</option>
+
             <option>Press</option>
+
             <option>Something else</option>
+
           </select>
+
         </div>
 
+
+
         <div class="form-row">
+
           <label for="message">Message</label>
+
           <textarea id="message" name="message" required></textarea>
+
         </div>
+
+
 
         <hr class="thin">
 
+
+
         <div class="form-actions">
+
           <p class="form-actions__note">Usually answered the same day.</p>
+
           <button type="submit" class="btn">Send →</button>
+
         </div>
+
       </form>
+
     </div>
+
   </section>
+
+
 
   <!-- Shortcuts -->
+
   <section class="section section--warm">
+
     <div class="wrap">
+
       <header class="section-head">
+
         <div class="num">§ Before you write</div>
+
         <h2>You might want<br>one of these instead.</h2>
+
       </header>
 
+
+
       <nav class="shortcut-grid" aria-label="Helpful links">
+
         <a href="sell.html" class="shortcut-card shortcut-card--oxblood">
+
           <p class="eyebrow">→</p>
+
           <h3>Selling a collection?</h3>
-          <p>The dedicated form gives me what I need to make you a proper offer.</p>
+
+          <p>The dedicated form gives us what we need to make a proper offer.</p>
+
         </a>
+
         <a href="books.html" class="shortcut-card shortcut-card--indigo">
+
           <p class="eyebrow">→</p>
+
           <h3>Looking for a title?</h3>
+
           <p>Have a look at the catalogue first — it's fully searchable.</p>
+
         </a>
+
         <a href="info.html" class="shortcut-card shortcut-card--ochre">
+
           <p class="eyebrow">→</p>
+
           <h3>Shipping or returns?</h3>
+
           <p>Postage times, return policy, and everything else.</p>
+
         </a>
+
       </nav>
+
     </div>
+
   </section>
 
+
+
   <!-- Newsletter -->
+
   <section class="newsletter">
+
     <div class="wrap">
+
       <div class="newsletter__grid">
+
         <div>
+
           <p class="eyebrow eyebrow--on-dark">Mailing list</p>
+
           <h2>When new things<br>turn up.</h2>
+
           <p>An occasional email when interesting books arrive.</p>
+
         </div>
+
         <div>
+
           <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+
             <input type="hidden" name="form-name" value="newsletter">
+
             <p class="honeypot"><label>Don't fill this out: <input name="bot-field"></label></p>
+
             <input type="email" name="email" placeholder="your@email" required>
+
             <button type="submit">Subscribe →</button>
+
           </form>
+
           <p class="newsletter__small">Sent when there's something worth sending.</p>
+
         </div>
+
       </div>
+
     </div>
+
   </section>
+
+
 
 </main>
 
+
+
 <footer class="site-footer">
+
   <div class="wrap">
+
     <div class="site-footer__grid">
+
       <div>
+
         <a href="index.html" class="wordmark">Fortean<span class="wordmark__dot"></span>Books</a>
+
         <address class="site-footer__address">
+
           Secondhand books on the unexplained.<br>
+
           Based in the United Kingdom.<br>
+
           Ships worldwide.
+
         </address>
+
       </div>
+
       <nav aria-label="Browse">
+
         <h4>Browse</h4>
+
         <ul>
+
           <li><a href="books.html">Everything in stock</a></li>
+
         </ul>
+
       </nav>
+
       <nav aria-label="About">
+
         <h4>About</h4>
+
         <ul>
+
           <li><a href="about.html">Why this exists</a></li>
+
           <li><a href="sell.html">Sell your books</a></li>
+
+          <li><a href="partner.html">Partner with us</a></li>
+
           <li><a href="contact.html">Get in touch</a></li>
+
         </ul>
+
       </nav>
+
       <nav aria-label="Customer">
+
         <h4>Customer</h4>
+
         <ul>
+
           <li><a href="info.html#shipping">Shipping</a></li>
+
           <li><a href="info.html#returns">Returns</a></li>
+
           <li><a href="info.html#privacy">Privacy</a></li>
+
         </ul>
+
       </nav>
+
     </div>
+
     <div class="site-footer__bottom">
-      <span>© Fortean Books · A one-person operation</span>
-      <span>Set in Cormorant &amp; Crimson Pro</span>
+
+      <span>© 2026 Fortean Books</span>
+
     </div>
+
   </div>
+
 </footer>
 
-<div id="snipcart" data-config-modal-style="side" data-api-key="YOUR_PUBLIC_API_KEY_HERE" hidden></div>
-<!-- <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script> -->
+
+
+<div id="snipcart" data-config-modal-style="side" data-api-key="Mjk2MGZjOGMtNzc3OS00NmQzLTk5OWYtN2ZiYTY1NmFhZTQ4NjM5MTU1NDgyODY5Nzc4Mzc3" hidden></div>
+
+<script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+
+
+<script src="scripts/nav.js"></script>
 
 </body>
+
 </html>
+

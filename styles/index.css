@@ -5,11 +5,19 @@
 /* ------------- Hero — shader dark version ------------- */
 
 .hero-centered {
-  /* WebGL canvas fallback colour — dark neutral sits between red and blue */
   background: #0a0809;
-  /* No bottom border — the darkness creates the separation naturally */
   border-bottom-color: transparent;
   overflow: hidden;
+  /* Pull up behind the sticky transparent header so there is no gap.
+     Header inner is 58px + 1px transparent border-bottom = 59px total flow height. */
+  margin-top: -59px;
+  /* Full-screen */
+  min-height: 100vh;
+  padding: 0; /* override main.css 140px 0 120px */
+  /* Centre content vertically */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #hero-canvas {
@@ -26,15 +34,23 @@
 .hero-centered .wrap {
   position: relative;
   z-index: 1;
+  width: 100%;
+  padding-top: 80px;    /* always clear the transparent header */
+  padding-bottom: 56px;
 }
 
 /* Flip all text to light */
 .hero-centered__eyebrow {
-  color: rgba(255, 255, 255, 0.40);
+  color: rgba(255, 255, 255, 0.32);
+  margin-bottom: 40px; /* tighter than the default 56px */
 }
 
 .hero-centered__title {
   color: #fff;
+  font-size: clamp(48px, 6.5vw, 96px); /* larger for full-screen hero */
+  max-width: none;       /* remove main.css 12ch constraint */
+  text-wrap: unset;      /* remove balance — explicit <br> handles the split */
+  margin-bottom: 40px;   /* breathing room before the epigraph */
 }
 
 /* Accent dot: oxblood red, consistent with site-wide accent usage */
@@ -55,18 +71,24 @@
   background: rgba(255, 255, 255, 0.25);
 }
 
-/* Ghost button on dark background */
+/* CTA: solid white → outline on hover */
 .hero-centered .btn--ghost {
-  color: rgba(255, 255, 255, 0.80);
-  border-color: rgba(255, 255, 255, 0.28);
+  background: #fff;
+  border: 2px solid #fff;
+  color: #0a0809;
+  font-size: 13px;
+  font-weight: 700;
 }
 .hero-centered .btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.10);
-  border-color: rgba(255, 255, 255, 0.55);
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.85);
   color: #fff;
 }
 
-.hero-centered__actions { margin-top: 28px; }
+.hero-centered__actions { margin-top: 52px; }
+
+/* Capitalise first letter of the rotating typewriter word */
+#hero-word { text-transform: capitalize; }
 
 /* ------------- Featured section ------------- */
 

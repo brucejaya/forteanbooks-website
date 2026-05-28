@@ -4,10 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Shipping, Returns &amp; Privacy — Fortean Books</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="description" content="Shipping, returns, and privacy for Fortean Books. Royal Mail, dispatched within two working days, straightforward returns policy, no advertising trackers.">
+  <meta property="og:site_name" content="Fortean Books">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Shipping, Returns &amp; Privacy — Fortean Books">
+  <meta property="og:description" content="Shipping, returns, and privacy for Fortean Books. Royal Mail, dispatched within two working days, straightforward returns policy, no advertising trackers.">
+  <meta property="og:url" content="https://forteanbooks.co.uk/info.html">
   <link rel="preconnect" href="https://app.snipcart.com">
   <link rel="preconnect" href="https://cdn.snipcart.com">
   <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css">
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/snipcart.css">
 </head>
 <body>
 
@@ -16,14 +24,42 @@
     <a href="index.html" class="wordmark">Fortean<span class="wordmark__dot"></span>Books</a>
     <nav class="site-nav" aria-label="Main">
       <a href="index.html">Home</a>
-      <a href="books.html">Catalogue</a>
+      <a href="books.html">Shop</a>
       <a href="about.html">About</a>
       <a href="sell.html">Sell to us</a>
+      <a href="partner.html">Partner with us</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a href="#" class="snipcart-checkout cart-pill">Cart · <span class="snipcart-items-count">0</span></a>
+    <div class="site-header__actions">
+      <a href="books.html" class="shop-btn">Shop</a>
+      <a href="#" class="snipcart-checkout cart-pill"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg> Basket · <span class="snipcart-items-count">0</span></a>
+    </div>
+    <button class="burger-btn" id="burger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav__head">
+    <a href="index.html" class="wordmark">Fortean<span class="wordmark__dot"></span>Books</a>
+    <button class="mobile-nav__close" id="mobile-nav-close" aria-label="Close menu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav__links" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="books.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="sell.html">Sell to us</a>
+    <a href="partner.html">Partner with us</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="mobile-nav__foot">
+    <a href="books.html" class="shop-btn">Shop</a>
+    <a href="#" class="snipcart-checkout cart-pill"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg> Basket · <span class="snipcart-items-count">0</span></a>
+  </div>
+</div>
 
 <main>
 
@@ -52,9 +88,9 @@
           <p class="muted">Books go out within two working days of an order. Usually faster.</p>
         </div>
         <div>
-          <p>All orders ship via Royal Mail. Most paperbacks go as Large Letter (2–4 working days in the UK). Heavier hardbacks and multi-book orders go as Small Parcel (2–3 working days). Tracking is included on orders over £30; if you'd like it on a smaller order, drop me a line before you buy.</p>
+          <p>All orders ship via Royal Mail. Most paperbacks go as Large Letter (2–4 working days in the UK). Heavier hardbacks and multi-book orders go as Small Parcel (2–3 working days). Tracking is included on orders over £30; if you'd like it on a smaller order, drop us a line before you buy.</p>
           <p>International orders ship via Royal Mail International Standard — typically 5–10 working days to Europe, 7–14 to the rest of the world. Customs duties and import taxes, where applicable, are the buyer's responsibility.</p>
-          <p>Books are packed in card-backed envelopes or small boxes, wrapped in tissue. I try to pack things the way I'd want them to arrive.</p>
+          <p>Books are packed in card-backed envelopes or small boxes, wrapped in tissue. Packed the way we'd want things to arrive.</p>
         </div>
       </div>
     </div>
@@ -69,12 +105,12 @@
         <div>
           <p class="eyebrow">§ 02 — Returns</p>
           <h2>Described honestly.<br><em>Backed up.</em></h2>
-          <p class="muted">If a book isn't as described, I want to know.</p>
+          <p class="muted">If a book isn't as described, we want to know.</p>
         </div>
         <div>
-          <p>Books are described accurately. If something arrives and doesn't match its description, return it within 14 days for a full refund of the item price and your original postage. I'll cover the return postage.</p>
-          <p>Change-of-mind returns are accepted within 7 days; in that case I ask that you cover the cost of sending it back.</p>
-          <p>In either case, email me first — things are usually resolved without needing to post anything. The address is on the <a href="contact.html">contact page</a>.</p>
+          <p>Books are described accurately. If something arrives and doesn't match its description, return it within 14 days for a full refund of the item price and your original postage. We'll cover the return postage.</p>
+          <p>Change-of-mind returns are accepted within 7 days; in that case we ask that you cover the cost of sending it back.</p>
+          <p>In either case, email us first — most things are resolved without needing to post anything. The address is on the <a href="contact.html">contact page</a>.</p>
         </div>
       </div>
     </div>
@@ -92,11 +128,11 @@
           <p class="muted">This is a one-person operation. No ad networks, no trackers.</p>
         </div>
         <div>
-          <p><strong>What I collect</strong> — When you place an order: name, email address, and delivery address. When you sign up for the newsletter: email address only.</p>
-          <p><strong>What I do with it</strong> — Order data is used to process and dispatch your order and to handle any queries about it. Your address is passed to Royal Mail for delivery and nothing else. Payment is handled by Snipcart and Stripe — I don't handle your card details.</p>
-          <p>Newsletter addresses are used only for the newsletter. Every email includes an unsubscribe link. You can also write to me directly to be removed at any time.</p>
-          <p><strong>What I don't do</strong> — I don't sell, rent, or share personal data with any third party beyond the payment processor and postal service above. No advertising trackers.</p>
-          <p><strong>Your rights</strong> — Under UK GDPR you have the right to access, correct, or request deletion of your personal data. Write to me at the address on the <a href="contact.html">contact page</a> and I'll sort it out.</p>
+          <p><strong>What we collect</strong> — When you place an order: name, email address, and delivery address. When you sign up for the newsletter: email address only.</p>
+          <p><strong>What we do with it</strong> — Order data is used to process and dispatch your order and to handle any queries about it. Your address is passed to Royal Mail for delivery and nothing else. Payment is handled by Snipcart and Stripe — we don't handle your card details.</p>
+          <p>Newsletter addresses are used only for the newsletter. Every email includes an unsubscribe link. You can also write to us directly to be removed at any time.</p>
+          <p><strong>What we don't do</strong> — We don't sell, rent, or share personal data with any third party beyond the payment processor and postal service above. No advertising trackers.</p>
+          <p><strong>Your rights</strong> — Under UK GDPR you have the right to access, correct, or request deletion of your personal data. Write to us at the address on the <a href="contact.html">contact page</a> and we'll sort it out.</p>
         </div>
       </div>
     </div>
@@ -126,6 +162,7 @@
         <ul>
           <li><a href="about.html">Why this exists</a></li>
           <li><a href="sell.html">Sell your books</a></li>
+          <li><a href="partner.html">Partner with us</a></li>
           <li><a href="contact.html">Get in touch</a></li>
         </ul>
       </nav>
@@ -139,14 +176,14 @@
       </nav>
     </div>
     <div class="site-footer__bottom">
-      <span>© Fortean Books · A one-person operation</span>
-      <span>Set in Cormorant &amp; Crimson Pro</span>
+      <span>© 2026 Fortean Books</span>
     </div>
   </div>
 </footer>
 
-<div id="snipcart" data-config-modal-style="side" data-api-key="YOUR_PUBLIC_API_KEY_HERE" hidden></div>
-<!-- <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script> -->
+<div id="snipcart" data-config-modal-style="side" data-api-key="Mjk2MGZjOGMtNzc3OS00NmQzLTk5OWYtN2ZiYTY1NmFhZTQ4NjM5MTU1NDgyODY5Nzc4Mzc3" hidden></div>
+<script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
 
+<script src="scripts/nav.js"></script>
 </body>
 </html>

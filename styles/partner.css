@@ -1,0 +1,23 @@
+/* =========================================================
+   partner.css — partnerships page styles
+   ========================================================= */
+
+/* 2×2 grid for the four options — distinct from the 3-col sell.css layout */
+.options-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 52px 80px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.options-steps .process-step__num {
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+.options-steps .process-step h3 { font-size: 22px; }
+.options-steps .process-step p   { font-size: 17px; }
+
+@media (max-width: 700px) {
+  .options-steps { grid-template-columns: 1fr; gap: 36px; }
+}

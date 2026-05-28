@@ -1,0 +1,548 @@
+/* =========================================================
+   FORTEAN BOOKS — Snipcart cart theme
+   Variables verified against:
+   cdn.snipcart.com/themes/v3.7.1/default/snipcart.css
+   =========================================================
+
+   Snipcart v3.7 uses a structured naming convention:
+     --bgColor-*        background colors
+     --color-*          text / icon colors
+     --borderColor-*    border colors
+     --shadow-*         box shadows
+     --font-family      base font
+
+   The primary button class is .snipcart-button-primary
+   The modal container variable is --bgColor-modal
+
+   ========================================================= */
+
+
+/* ── CSS custom properties ───────────────────────────────────
+   Scoped to both .snipcart (runtime UI container) and :root
+   (fallback if variable resolution happens before .snipcart
+   is present in the DOM).
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart,
+:root {
+
+  /* ── Text ─────────────────────────────────────────────── */
+  --color-default:              #1b1814;   /* --ink          */
+  --color-alt:                  #897b66;   /* --ink-faint    */
+  --color-link:                 #6e1d1d;   /* --oxblood      */
+  --color-error:                #8a1414;
+  --color-success:              #2c5a2e;
+  --color-info:                 #25365c;   /* --indigo       */
+  --color-icon:                 #897b66;
+
+  /* ── Input text & labels ──────────────────────────────── */
+  --color-input:                #1b1814;
+  --color-input-hover:          #1b1814;
+  --color-input-focus:          #1b1814;
+  --color-input-checked:        #f1eadb;
+  --color-input-disabled:       #c8bda1;
+  --color-inputLabel:           #524739;
+  --color-inputIcon:            #897b66;
+  --color-inputIcon-hover:      #524739;
+  --color-inputIcon-focus:      #6e1d1d;
+  --color-inputPlaceholder:     #897b66;
+
+  /* ── Primary button text (Checkout / Place order) ─────── */
+  --color-buttonPrimary:            #f1eadb;
+  --color-buttonPrimary-hover:      #f1eadb;
+  --color-buttonPrimary-focus:      #f1eadb;
+  --color-buttonPrimary-active:     #f1eadb;
+  --color-buttonPrimary-disabled:   #897b66;
+  --color-buttonPrimary-success:    #f1eadb;
+  --color-buttonPrimary-error:      #f1eadb;
+
+  /* ── Secondary button text (Back / Continue) ──────────── */
+  --color-buttonSecondary:          #524739;
+  --color-buttonSecondary-hover:    #1b1814;
+  --color-buttonSecondary-focus:    #524739;
+  --color-buttonSecondary-active:   #1b1814;
+  --color-buttonSecondary-disabled: #c8bda1;
+
+  /* ── Danger button text (Delete item) ─────────────────── */
+  --color-buttonDanger:             #8a1414;
+  --color-buttonDanger-hover:       #6e1d1d;
+
+  /* ── Backgrounds ──────────────────────────────────────── */
+  --bgColor-default:                #f1eadb;   /* --paper      */
+  --bgColor-alt:                    #ece3cf;   /* --paper-warm */
+  --bgColor-modal:                  #f1eadb;   /* cart panel   */
+  --bgColor-modalVeil:              rgba(27, 24, 20, 0.5);
+
+  /* ── Input backgrounds ────────────────────────────────── */
+  --bgColor-input:                  transparent;
+  --bgColor-input-hover:            transparent;
+  --bgColor-input-focus:            transparent;
+  --bgColor-input-checked:          #6e1d1d;
+  --bgColor-input-disabled:         #ece3cf;
+  --bgColor-input-error:            transparent;
+  --bgColor-input-autofill:         #ece3cf;
+
+  /* ── Primary button backgrounds ──────────────────────── */
+  --bgColor-buttonPrimary:          #6e1d1d;   /* --oxblood      */
+  --bgColor-buttonPrimary-hover:    #4a1212;   /* --oxblood-deep */
+  --bgColor-buttonPrimary-focus:    #6e1d1d;
+  --bgColor-buttonPrimary-active:   #4a1212;
+  --bgColor-buttonPrimary-disabled: #c8bda1;
+  --bgColor-buttonPrimary-success:  #2c5a2e;
+  --bgColor-buttonPrimary-error:    #8a1414;
+
+  /* ── Secondary button backgrounds ────────────────────── */
+  --bgColor-buttonSecondary:          #ece3cf;
+  --bgColor-buttonSecondary-hover:    #e3d8be;
+  --bgColor-buttonSecondary-focus:    #ece3cf;
+  --bgColor-buttonSecondary-active:   #e3d8be;
+  --bgColor-buttonSecondary-disabled: #dbd0b6;
+
+  /* ── Danger button backgrounds ───────────────────────── */
+  --bgColor-buttonDanger:             transparent;
+  --bgColor-buttonDanger-hover:       #fdf0f0;
+
+  /* ── Borders ──────────────────────────────────────────── */
+  --borderColor-default:              #c8bda1;   /* --rule     */
+  --borderColor-input:                #c8bda1;
+  --borderColor-input-hover:          #6e1d1d;
+  --borderColor-input-focus:          #6e1d1d;
+  --borderColor-input-checked:        #6e1d1d;
+  --borderColor-input-disabled:       #dbd0b6;
+  --borderColor-input-error:          #8a1414;
+
+  /* ── Shadows — remove Snipcart's neon-blue glows ─────── */
+  --shadow-default:               0 8px 24px -12px rgba(27, 24, 20, 0.18);
+  --shadow-input-hover:           none;
+  --shadow-input-focus:           none;
+  --shadow-input-checked:         none;
+  --shadow-buttonPrimary-hover:   0 4px 10px -4px rgba(74, 18, 18, 0.45);
+  --shadow-buttonPrimary-focus:   0 0 0 3px rgba(110, 29, 29, 0.30);
+  --shadow-buttonPrimary-active:  none;
+  --shadow-buttonSecondary-hover: none;
+  --shadow-buttonSecondary-focus: none;
+  --shadow-buttonDanger-hover:    none;
+  --shadow-buttonDanger-focus:    none;
+  --shadow-link-focus:            none;
+  --shadow-tooltip:               0 4px 12px rgba(27, 24, 20, 0.15);
+
+  /* ── Font ─────────────────────────────────────────────── */
+  --font-family: "Crimson Pro", "Crimson Text", Georgia, serif;
+}
+
+
+/* ── Panel background & nav offset ──────────────────────────
+   The sticky site header is 59px tall (58px inner + 1px border).
+   Push the cart panel down so it doesn't overlap the nav.
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-modal__container {
+  top:        59px !important;
+  height:     calc(100vh - 59px) !important;
+  max-height: calc(100vh - 59px) !important;
+  background: #f1eadb !important;
+}
+
+.snipcart-modal,
+.snipcart-cart__content,
+.snipcart-base-box {
+  background: #f1eadb !important;
+}
+
+
+/* ── Cart header ─────────────────────────────────────────────
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-cart-header {
+  background: #f1eadb !important;
+  border-bottom: 1px solid #c8bda1 !important;
+  padding: 22px 16px !important;
+}
+
+.snipcart-cart-header__title {
+  font-family:  "Cormorant Garamond", "EB Garamond", Georgia, serif !important;
+  font-style:   italic !important;
+  font-weight:  500 !important;
+  font-size:    26px !important;
+  letter-spacing: -0.01em !important;
+  line-height:  1 !important;
+  text-transform: none !important;
+  color:        #1b1814 !important;
+  text-align:   left !important;
+  padding-left: 0 !important;
+  margin-left:  0 !important;
+}
+
+
+/* ── Primary button: .snipcart-button-primary ────────────────
+   Verified class name from Snipcart v3.7.1 source CSS.
+   CSS variables above should handle it; !important rules here
+   as a guarantee.
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-button-primary {
+  background:       #6e1d1d !important;
+  background-image: none !important;
+  border-color:     transparent !important;
+  color:            #f1eadb !important;
+  border-radius:    0 !important;
+  font-family:      "JetBrains Mono", "Courier New", monospace !important;
+  font-size:        11px !important;
+  letter-spacing:   0.18em !important;
+  text-transform:   uppercase !important;
+  padding:          15px 22px !important;
+  box-shadow:       none !important;
+  transition:       background 0.15s !important;
+}
+
+.snipcart-button-primary:hover {
+  background:   #4a1212 !important;
+  box-shadow:   0 4px 10px -4px rgba(74, 18, 18, 0.45) !important;
+}
+
+.snipcart-button-primary:focus {
+  outline:      none !important;
+  box-shadow:   0 0 0 3px rgba(110, 29, 29, 0.30) !important;
+}
+
+.snipcart-button-primary:disabled {
+  background:   #c8bda1 !important;
+  color:        #897b66 !important;
+  box-shadow:   none !important;
+}
+
+
+/* ── Secondary button ────────────────────────────────────────
+   "Back", "Continue shopping" etc.
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-button-secondary {
+  background:     #ece3cf !important;
+  border-color:   #c8bda1 !important;
+  color:          #524739 !important;
+  border-radius:  0 !important;
+  font-family:    "JetBrains Mono", "Courier New", monospace !important;
+  font-size:      10px !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  box-shadow:     none !important;
+}
+
+.snipcart-button-secondary:hover {
+  background:   #e3d8be !important;
+  color:        #1b1814 !important;
+  box-shadow:   none !important;
+}
+
+
+/* ── Item lines ──────────────────────────────────────────────
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-item-line {
+  background:   transparent !important;
+  border-color: #c8bda1 !important;
+}
+
+/* Item title — remove the default all-caps Snipcart treatment */
+.snipcart-item-line__header h2,
+.snipcart-item-line__header h3,
+.snipcart-item-line__title,
+.snipcart-item-line__product-name {
+  font-family:     "Cormorant Garamond", "EB Garamond", Georgia, serif !important;
+  font-size:       19px !important;
+  font-weight:     500 !important;
+  line-height:     1.2 !important;
+  color:           #1b1814 !important;
+  text-transform:  none !important;
+  letter-spacing:  0 !important;
+}
+
+/* Per-item price */
+.snipcart-item-line__pricing,
+.snipcart-item-line__price,
+.snipcart-item-line__qty-price {
+  font-family:    "JetBrains Mono", "Courier New", monospace !important;
+  font-size:      13px !important;
+  color:          #6e1d1d !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Quantity control */
+.snipcart-item-quantity__quantity {
+  font-family:   "JetBrains Mono", "Courier New", monospace !important;
+  font-size:     13px !important;
+  background:    transparent !important;
+  border:        1px solid #c8bda1 !important;
+  border-radius: 0 !important;
+  color:         #1b1814 !important;
+  box-shadow:    none !important;
+}
+
+.snipcart-item-quantity__button {
+  background:    transparent !important;
+  border:        1px solid #c8bda1 !important;
+  border-radius: 0 !important;
+  color:         #524739 !important;
+  box-shadow:    none !important;
+}
+
+.snipcart-item-quantity__button:hover {
+  background:    #ece3cf !important;
+  border-color:  #897b66 !important;
+  color:         #1b1814 !important;
+}
+
+.snipcart-item-quantity__button:focus,
+.snipcart-item-quantity__quantity:focus {
+  outline:    none !important;
+  box-shadow: none !important;
+}
+
+
+/* ── Totals ──────────────────────────────────────────────────
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-summary-fees {
+  background:  transparent !important;
+  border-top:  1px solid #1b1814 !important;
+}
+
+.snipcart-summary-fees__title {
+  font-family:    "JetBrains Mono", "Courier New", monospace !important;
+  font-size:      10px !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color:          #524739 !important;
+}
+
+.snipcart-summary-fees__amount {
+  font-family: "JetBrains Mono", "Courier New", monospace !important;
+  font-size:   10px !important;
+  color:       #524739 !important;
+}
+
+.snipcart-summary-fees__title--total {
+  color:        #1b1814 !important;
+  font-size:    11px !important;
+  padding-top:  28px !important;
+  margin-top:   4px !important;
+  border-top:   1px solid #c8bda1 !important;
+}
+.snipcart-summary-fees__amount--total {
+  color:       #1b1814 !important;
+  font-size:   15px !important;
+  padding-top: 28px !important;
+  margin-top:  4px !important;
+}
+
+
+/* ── Checkout form inputs ─────────────────────────────────────
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-input__input,
+.snipcart-textbox__input,
+.snipcart-form-select__select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background:    transparent !important;
+  border:        0 !important;
+  border-bottom: 1px solid #c8bda1 !important;
+  border-radius: 0 !important;
+  box-shadow:    none !important;
+  font-family:   "Crimson Pro", "Crimson Text", Georgia, serif !important;
+  font-size:     18px !important;
+  color:         #1b1814 !important;
+  padding:       10px 0 !important;
+  transition:    border-color 0.15s !important;
+}
+
+.snipcart-input__input:focus,
+.snipcart-textbox__input:focus,
+.snipcart-form-select__select:focus {
+  border-bottom-color: #6e1d1d !important;
+  box-shadow:          none !important;
+  outline:             none !important;
+}
+
+.snipcart-input__input::placeholder,
+.snipcart-textbox__input::placeholder {
+  color: #897b66 !important;
+}
+
+.snipcart-form__field label,
+.snipcart-label {
+  font-family:    "JetBrains Mono", "Courier New", monospace !important;
+  font-size:      10px !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+  color:          #524739 !important;
+}
+
+.snipcart-input--error .snipcart-input__input {
+  border-bottom-color: #8a1414 !important;
+}
+
+.snipcart-input__error-message,
+.snipcart-form__error {
+  font-family:    "JetBrains Mono", "Courier New", monospace !important;
+  font-size:      10px !important;
+  letter-spacing: 0.12em !important;
+  color:          #8a1414 !important;
+}
+
+
+/* ── Checkout step headings ──────────────────────────────────
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-checkout-step__title {
+  font-family:    "Cormorant Garamond", "EB Garamond", Georgia, serif !important;
+  font-style:     italic !important;
+  font-weight:    500 !important;
+  font-size:      22px !important;
+  letter-spacing: -0.01em !important;
+  text-transform: none !important;
+  color:          #1b1814 !important;
+}
+
+
+/* ── Order confirmation ──────────────────────────────────────
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-order__title,
+.snipcart-order-summary__title {
+  font-family:    "Cormorant Garamond", "EB Garamond", Georgia, serif !important;
+  font-style:     italic !important;
+  font-weight:    500 !important;
+  text-transform: none !important;
+  color:          #1b1814 !important;
+}
+
+
+/* ── Base font override ──────────────────────────────────────
+   Snipcart defaults to Open Sans on .snipcart — override the
+   whole panel so everything inherits Crimson Pro.
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart {
+  font-family: "Crimson Pro", "Crimson Text", Georgia, serif !important;
+  font-size:   17px !important;
+}
+
+
+/* ── Snipcart font utility classes ──────────────────────────
+   Snipcart sets Montserrat on these; map them to our type
+   scale instead.
+   ─────────────────────────────────────────────────────────── */
+
+/* Section headings inside the panel (e.g. "Order summary") */
+.snipcart__font--subtitle,
+.snipcart__font--secondary {
+  font-family: "Cormorant Garamond", "EB Garamond", Georgia, serif !important;
+  font-style:  italic !important;
+  font-weight: 500 !important;
+  font-size:   20px !important;
+}
+
+/* Small / meta labels */
+.snipcart__font--subtitle-small,
+.snipcart__font--small,
+.snipcart__font--tiny {
+  font-family:    "JetBrains Mono", "Courier New", monospace !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+}
+
+
+/* ── Button label inner element ─────────────────────────────
+   Snipcart wraps all button text in .snipcart-base-button__label
+   and sets Montserrat on it directly — our .snipcart-button-*
+   rules only set font on the outer element, so this was still
+   showing Montserrat.
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-base-button__label {
+  font-family:    "JetBrains Mono", "Courier New", monospace !important;
+  font-size:      10px !important;
+  font-weight:    500 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+}
+
+
+/* ── Text links in the panel ────────────────────────────────
+   "Continue shopping", "Clear basket", etc.
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart__actions--link,
+.snipcart-button-link {
+  font-family:    "JetBrains Mono", "Courier New", monospace !important;
+  font-size:      10px !important;
+  font-weight:    500 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color:          #6e1d1d !important;
+}
+
+.snipcart__actions--link:hover,
+.snipcart-button-link:hover {
+  color: #4a1212 !important;
+}
+
+
+/* ── Step tab navigation ────────────────────────────────────
+   The Cart → Billing → Shipping → Payment breadcrumb.
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-tabs__tab-button {
+  font-family:    "JetBrains Mono", "Courier New", monospace !important;
+  font-size:      9px !important;
+  font-weight:    500 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color:          #897b66 !important;
+}
+
+.snipcart-tabs__tab-button.is-active {
+  color:       #1b1814 !important;
+  font-weight: 700 !important;
+}
+
+
+/* ── Cart header item count ─────────────────────────────────
+   The "x items" line under the panel title.
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-cart-header__count {
+  font-family:    "JetBrains Mono", "Courier New", monospace !important;
+  font-size:      10px !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color:          #897b66 !important;
+}
+
+
+/* ── Empty basket state ─────────────────────────────────────
+   "Back to shop" button should be full width.
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-empty-cart {
+  padding: 0 28px !important;
+  box-sizing: border-box !important;
+}
+
+.snipcart-empty-cart .snipcart-button-primary,
+.snipcart-empty-cart .snipcart-button-secondary,
+.snipcart-empty-cart__actions .snipcart-button-primary,
+.snipcart-empty-cart__actions .snipcart-button-secondary {
+  width:   100% !important;
+  display: block !important;
+}
+
+
+/* ── Scrollbar ───────────────────────────────────────────────
+   ─────────────────────────────────────────────────────────── */
+
+.snipcart-modal__container::-webkit-scrollbar { width: 6px; }
+.snipcart-modal__container::-webkit-scrollbar-track  { background: #ece3cf; }
+.snipcart-modal__container::-webkit-scrollbar-thumb  { background: #c8bda1; border-radius: 3px; }
+.snipcart-modal__container::-webkit-scrollbar-thumb:hover { background: #897b66; }

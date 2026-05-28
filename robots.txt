@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://forteanbooks.co.uk/sitemap.xml
